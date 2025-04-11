@@ -1,0 +1,19 @@
+{
+  "name": "login-form",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "login-form": "file:",
+    "validator": "^13.12.0"
+  },
+  "description": ""
+}

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Blue Gradient Background */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #6dd5ed, #2193b0);
+            background-size: cover;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            animation: formAppear 1s ease-out;
+        }
+
+        @keyframes formAppear {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            width: 100%;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="url"],
+        select {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="email"]:focus,
+        input[type="url"]:focus,
+        select:focus {
+            border-color: #2a5298;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            outline: none;
+            background-color: #fff;
+        }
+
+        .button-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center align items */
+            gap: 10px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #2193b0;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1e3c72;
+            transform: translateY(-3px);
+        }
+
+        /* Styling for the "Already Have Account?" text */
+        .already-account {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333; /* Default text color */
+            margin-top: 10px; /* Spacing from the submit button */
+        }
+
+        .login-link {
+            color: #2193b0; /* Blue color for "Login here" */
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .login-link:hover {
+            color: #1e3c72; /* Darker blue on hover */
+        }
+
+        /* For mobile responsiveness */
+        @media (max-width: 768px) {
+            form {
+                padding: 20px;
+                flex-direction: column;
+            }
+
+            .form-group {
+                width: 100%;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <form action="/submit" method="post">
+        <h2>Registration Form</h2>
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="prn">PRN</label>
+            <input type="number" id="prn" name="prn" placeholder="Enter your PRN" required autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="mobile">Mobile Number</label>
+            <input type="number" id="mobile" name="mobile" placeholder="Enter your mobile number" required autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address" required autocomplete="off">
+        </div>
+
+        <!-- Added Image URL Input -->
+        <div class="form-group">
+            <label for="img_url">Image URL</label>
+            <input type="url" id="img_url" name="img_url" placeholder="Enter the image URL" required autocomplete="off">
+        </div>
+
+        <!-- Dropdown for Department -->
+        <div class="form-group">
+            <label for="department">Department</label>
+            <select id="department" name="department" required>
+                <option value="" disabled selected>Select your department</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Mechanical">Mechanical</option>
+                <option value="Civil">Civil</option>
+                <option value="Electrical">Electrical</option>
+            </select>
+        </div>
+
+        <div class="button-container">
+            <input type="submit" value="Submit">
+            <div class="already-account">
+                Already Have Account? <span class="login-link" onclick="window.location.href='/login'">Login here</span>
+            </div>
+        </div>
+
+    </form>
+
+</body>
+</html>

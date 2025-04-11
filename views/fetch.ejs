@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Register</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #6dd5ed);
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-content {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 350px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 4px solid #2a5298;
+            transition: transform 0.3s;
+            padding: 10px;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .details {
+            flex: 1;
+        }
+
+        h1 {
+            color: #2a5298;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        label {
+            color: #333;
+            font-weight: bold;
+            width: 150px;
+            margin-right: 10px;
+        }
+
+        input[type="text"], 
+        input[type="email"], 
+        input[type="number"] {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            flex: 1;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, 
+        input[type="email"]:focus, 
+        input[type="number"]:focus {
+            border-color: #2a5298;
+            outline: none;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        input[type="submit"], .delete-button {
+            padding: 12px;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            flex: 1;
+            margin: 0 5px;
+        }
+
+        .update-button {
+            background-color: #4CAF50; /* Green */
+        }
+
+        .update-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .delete-button {
+            background-color: #F44336; /* Red */
+        }
+
+        .delete-button:hover {
+            background-color: #e53935;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive for small devices */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            label {
+                width: 120px;
+            }
+            .form-content {
+                flex-direction: column; /* Stack the image and details */
+                align-items: center; /* Center the image and details */
+            }
+            .profile-img {
+                margin: 0 0 20px 0; /* Add margin below for spacing */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Student Information</h1>
+
+        <div class="form-content">
+            <!-- Profile Image from Database -->
+            <img src="<%= UserInfo.URL %>" alt="Profile Image" class="profile-img">
+            
+            <!-- Student Info Section in Form Fields -->
+            <div class="details">
+                <form action="/update" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" value="<%= UserInfo.Name %>" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prn">PRN:</label>
+                        <input type="number" value="<%= UserInfo.PRN %>" disabled>
+                        <input type="hidden" name="prn" value="<%= UserInfo.PRN %>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile">Mobile No.:</label>
+                        <input type="number" id="mobile" name="mobile" value="<%= UserInfo.Mobile %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" value="<%= UserInfo.Age %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" id="address" name="address" value="<%= UserInfo.Address %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="<%= UserInfo.Email %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">Department:</label>
+                        <input type="text" id="department" name="department" value="<%= UserInfo.Dept %>" required>
+                    </div>
+
+                    <div class="button-container">
+                        <input type="submit" class="update-button" value="Update Information">
+                        <a href="/delete/<%= UserInfo.PRN %>">
+                            <button type="button" class="delete-button" value="Delete">Delete</button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
